@@ -1,0 +1,56 @@
+diff --git a/node_modules/react-native/Libraries/LinkingIOS/RCTLinkingManager.mm b/node_modules/react-native/Libraries/LinkingIOS/RCTLinkingManager.mm
+index 2d96001..17714aa 100644
+--- a/node_modules/react-native/Libraries/LinkingIOS/RCTLinkingManager.mm
++++ b/node_modules/react-native/Libraries/LinkingIOS/RCTLinkingManager.mm
+@@ -98,6 +98,9 @@ RCT_EXPORT_METHOD(openURL:(NSURL *)URL
+                   resolve:(RCTPromiseResolveBlock)resolve
+                   reject:(RCTPromiseRejectBlock)reject)
+ {
++#if !ACTION_EXTENSION
++  reject(RCTErrorUnspecified, @"Unable to open URL", nil);
++#else
+   [RCTSharedApplication() openURL:URL options:@{} completionHandler:^(BOOL success) {
+     if (success) {
+       resolve(@YES);
+@@ -116,6 +119,7 @@ RCT_EXPORT_METHOD(openURL:(NSURL *)URL
+       #endif
+     }
+   }];
++#endif
+ }
+ 
+ RCT_EXPORT_METHOD(canOpenURL:(NSURL *)URL
+@@ -168,6 +172,9 @@ RCT_EXPORT_METHOD(openSettings:(RCTPromiseResolveBlock)resolve
+                   reject:(__unused RCTPromiseRejectBlock)reject)
+ {
+   NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
++#if !ACTION_EXTENSION
++    reject(RCTErrorUnspecified, @"Unable to open app settings", nil);
++#else
+   [RCTSharedApplication() openURL:url options:@{} completionHandler:^(BOOL success) {
+     if (success) {
+       resolve(nil);
+@@ -175,6 +182,7 @@ RCT_EXPORT_METHOD(openSettings:(RCTPromiseResolveBlock)resolve
+       reject(RCTErrorUnspecified, @"Unable to open app settings", nil);
+     }
+   }];
++#endif
+ }
+ 
+ RCT_EXPORT_METHOD(sendIntent:(NSString *)action
+diff --git a/node_modules/react-native/React/Base/RCTKeyCommands.m b/node_modules/react-native/React/Base/RCTKeyCommands.m
+index 7e4ccb2..7ffb5f0 100644
+--- a/node_modules/react-native/React/Base/RCTKeyCommands.m
++++ b/node_modules/react-native/React/Base/RCTKeyCommands.m
+@@ -128,7 +128,11 @@ RCT_NOT_IMPLEMENTED(-(instancetype)init)
+     isKeyDown = [event _isKeyDown];
+   }
+ 
++#if !ACTION_EXTENSION
++  BOOL interactionEnabled = YES;
++#else
+   BOOL interactionEnabled = !UIApplication.sharedApplication.isIgnoringInteractionEvents;
++#endif
+   BOOL hasFirstResponder = NO;
+   if (isKeyDown && modifiedInput.length > 0 && interactionEnabled) {
+     UIResponder *firstResponder = nil;
