@@ -6,7 +6,7 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController {
+class MessagesViewController: MSMessagesAppViewController, RCTBridgeDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,6 +20,43 @@ class MessagesViewController: MSMessagesAppViewController {
     // This will happen when the extension is about to present UI.
 
     // Use this method to configure the extension and restore previously stored state.
+
+    // Remove any existing child view controllers
+    for child in children {
+      child.willMove(toParent: nil)
+      child.view.removeFromSuperview()
+      child.removeFromParent()
+    }
+
+    let bridge = RCTBridge(delegate: self, launchOptions: nil)!
+
+    let rootView = RCTRootView(
+      bridge: bridge,
+      moduleName: "InputDemoStickersApp",
+      initialProperties: nil
+    )
+
+    rootView.backgroundColor = UIColor.tertiarySystemBackground
+
+    let rootViewController = UIViewController()
+    rootViewController.view = rootView
+
+    addChild(rootViewController)
+    rootViewController.view.frame = view.bounds
+    rootViewController.view.translatesAutoresizingMaskIntoConstraints = false
+
+    view.addSubview(rootViewController.view)
+
+    rootViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
+      .isActive = true
+    rootViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+      .isActive = true
+    rootViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
+      .isActive = true
+    rootViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      .isActive = true
+
+    didMove(toParent: self)
   }
 
   override func didResignActive(with conversation: MSConversation) {
@@ -61,4 +98,8 @@ class MessagesViewController: MSMessagesAppViewController {
     // Use this method to finalize any behaviors associated with the change in presentation style.
   }
 
+  func sourceURL(for bridge: RCTBridge!) -> URL! {
+    RCTBundleURLProvider.sharedSettings()?
+      .jsBundleURL(forBundleRoot: "index.stickers", fallbackResource: nil)
+  }
 }
