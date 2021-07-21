@@ -6,7 +6,7 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController, RCTBridgeDelegate {
+@objc class MessagesViewController: MSMessagesAppViewController, RCTBridgeDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -101,5 +101,9 @@ class MessagesViewController: MSMessagesAppViewController, RCTBridgeDelegate {
   func sourceURL(for bridge: RCTBridge!) -> URL! {
     RCTBundleURLProvider.sharedSettings()?
       .jsBundleURL(forBundleRoot: "index.stickers", fallbackResource: nil)
+  }
+
+  func extraModules(for _: RCTBridge!) -> [RCTBridgeModule]! {
+    return [MessagesModule(viewController: self) as! RCTBridgeModule]
   }
 }

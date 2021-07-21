@@ -17,6 +17,8 @@
 		96E3544F26A752E20019AD0E /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E3544E26A752E20019AD0E /* MessagesViewController.swift */; };
 		96E3545426A752E20019AD0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E3545326A752E20019AD0E /* Assets.xcassets */; };
 		96E3545826A752E20019AD0E /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 96E3544A26A752E20019AD0E /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		96E3546226A8A54E0019AD0E /* MessagesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E3545E26A875900019AD0E /* MessagesModule.m */; };
+		96E3546326A8A5510019AD0E /* MessagesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E3546026A875C50019AD0E /* MessagesModule.swift */; };
 		A39BD08D3A34EE3C20042925 /* libPods-InputDemoApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5087CFCD2DE7418E87D4EF40 /* libPods-InputDemoApp.a */; };
 		A96F889E59B68CEAF6BEE388 /* libPods-InputDemoApp-InputDemoAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D12E27E2192BF94E28FCBDB /* libPods-InputDemoApp-InputDemoAppTests.a */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		96E3545326A752E20019AD0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96E3545526A752E20019AD0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E3545D26A7535F0019AD0E /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		96E3545E26A875900019AD0E /* MessagesModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagesModule.m; sourceTree = "<group>"; };
+		96E3546026A875C50019AD0E /* MessagesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesModule.swift; sourceTree = "<group>"; };
 		977A2B49B91CC48BD0B5B1F7 /* Pods-MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.release.xcconfig"; path = "Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
 		9DD138AEAA057AEBC9877775 /* libPods-MessagesExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MessagesExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A072AEE128565972585A9D38 /* Pods-InputDemoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InputDemoApp.release.xcconfig"; path = "Target Support Files/Pods-InputDemoApp/Pods-InputDemoApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				96E3545326A752E20019AD0E /* Assets.xcassets */,
 				96E3545526A752E20019AD0E /* Info.plist */,
 				96E3545D26A7535F0019AD0E /* Bridging-Header.h */,
+				96E3545E26A875900019AD0E /* MessagesModule.m */,
+				96E3546026A875C50019AD0E /* MessagesModule.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -518,6 +524,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				96E3544F26A752E20019AD0E /* MessagesViewController.swift in Sources */,
+				96E3546326A8A5510019AD0E /* MessagesModule.swift in Sources */,
+				96E3546226A8A54E0019AD0E /* MessagesModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,7 +706,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -756,7 +763,6 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
