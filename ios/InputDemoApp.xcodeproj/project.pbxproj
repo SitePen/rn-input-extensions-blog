@@ -269,6 +269,7 @@
 				96E3544626A752E20019AD0E /* Sources */,
 				96E3544726A752E20019AD0E /* Frameworks */,
 				96E3544826A752E20019AD0E /* Resources */,
+				96BA506D289197BD0028E3A9 /* Bundle React Native code and images */,
 				B27C6BEC32844D4035B1D337 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -423,6 +424,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InputDemoApp/Pods-InputDemoApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		96BA506D289197BD0028E3A9 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		B27C6BEC32844D4035B1D337 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
